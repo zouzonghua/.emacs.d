@@ -37,7 +37,7 @@
 
 ;; Load configs for specific features and modes
 (use-package diminish)
-(use-package 'command-log-mode)
+(use-package command-log-mode)
 
 (require 'init-frame-hooks)
 
