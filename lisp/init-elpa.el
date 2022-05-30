@@ -1,16 +1,15 @@
-;;; init-elpa.el --- initialize the elpa repository
-
-;; Author: zouzonghua <zouzonghua.cn@gmail.com>
-;; Version: 1.0
-;; Homepage: https://github.com/zouzonghua
-
+;;; init-elpa.el --- Settings and helpers for package.el -*- lexical-binding: t -*-
 ;;; Commentary:
-;; (c) zouzonghua, 2022-
+;;; Code:
 
-;;; code:
+(require 'package)
+
+;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
+(setq package-user-dir
+      (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
+                        user-emacs-directory))
 
 ;;; settings for package archives
-(require 'package)
 (setq package-check-signature nil
       load-prefer-newer t)
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
@@ -42,8 +41,4 @@
 (use-package delight)
 
 (provide 'init-elpa)
-
-;; Local Variables:
-;; byte-compile-warnings: (not free-vars unresolved)
-;; End:
 ;;; init-elpa.el ends here
