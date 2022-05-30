@@ -36,9 +36,5 @@
 
 (use-package gnu-elpa-keyring-update)
 
-;; diminish & delight, as use-package optional dependency
-(use-package diminish)
-(use-package delight)
-
 (provide 'init-elpa)
 ;;; init-elpa.el ends here

@@ -65,10 +65,10 @@
 
 ;;; Beacon
 
-(when (use-package beacon)
-  (setq-default beacon-lighter "")
-  (setq-default beacon-size 20)
-  (add-hook 'after-init-hook 'beacon-mode))
+(use-package beacon)
+(setq-default beacon-lighter "")
+(setq-default beacon-size 20)
+(add-hook 'after-init-hook 'beacon-mode)
 
 
 
