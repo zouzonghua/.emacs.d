@@ -34,7 +34,6 @@
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (require 'init-elpa)      ;; Machinery for installing required packages
-;(require 'init-exec-path) ;; Set up $PATH
 
 ;; Load configs for specific features and modes
 (use-package diminish)
