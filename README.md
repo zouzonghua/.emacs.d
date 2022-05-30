@@ -1,6 +1,6 @@
 # .emacs.d
 
-my emacs setttings
+emacs config
 
 ## installation
 
