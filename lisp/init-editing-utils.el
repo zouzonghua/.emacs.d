@@ -73,23 +73,33 @@
 
 
 ;;; Newline behaviour
+;;; tui not support
 
 (global-set-key (kbd "RET") 'newline-and-indent)
-(defun sanityinc/newline-at-end-of-line ()
+(defun newline-at-end-of-line ()
   "Move to end of line, enter a newline, and reindent."
   (interactive)
   (move-end-of-line 1)
   (newline-and-indent))
 
-(global-set-key (kbd "S-<return>") 'sanityinc/newline-at-end-of-line)
+(defun newline-at-start-of-line ()
+  "Move to end of line, enter a newline, and reindent."
+  (interactive)
+  (previous-line 1)
+  (newline-and-indent))
+
+(global-set-key (kbd "C-<return>") 'newline-at-end-of-line)
+(global-set-key (kbd "C-S-<return>") 'newline-at-start-of-line)
 
 
+;;; Display line numbers
 
 (when (fboundp 'display-line-numbers-mode)
   (setq-default display-line-numbers-width 3)
   (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
 
+;;; Display fill column indicator
 
 (when (boundp 'display-fill-column-indicator)
 ;;  (setq-default indicate-buffer-boundaries 'left)
@@ -98,11 +108,37 @@
   (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode))
 
 
-;;; rainbow-delimiters
+;;; Rainbow delimiters
 
 (when (use-package rainbow-delimiters)
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+
+
+;;; Page break lines
+
+(use-package page-break-lines)
+(add-hook 'after-init-hook 'global-page-break-lines-mode)
+(with-eval-after-load 'page-break-lines
+(diminish 'page-break-lines-mode))
+
+
+;;; Which key
+
+(use-package which-key)
+(add-hook 'after-init-hook 'which-key-mode)
+(setq-default which-key-idle-delay 1.5)
+(with-eval-after-load 'which-key
+  (diminish 'which-key-mode))
+
+
+;;; Move dup
+
+(use-package move-dup
+  :bind (("M-p"   . move-dup-move-lines-up)
+         ("C-M-p" . move-dup-duplicate-up)
+         ("M-n"   . move-dup-move-lines-down)
+         ("C-M-n" . move-dup-duplicate-down)))
 
 
 
@@ -131,49 +167,19 @@
 ;; (global-set-key (kbd "C-+") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-
-
-;;; Page break lines
-
-(when (use-package page-break-lines)
-  (add-hook 'after-init-hook 'global-page-break-lines-mode)
-  (with-eval-after-load 'page-break-lines
-    (diminish 'page-break-lines-mode)))
-
-
-(use-package which-key)
-(add-hook 'after-init-hook 'which-key-mode)
-(setq-default which-key-idle-delay 1.5)
-(with-eval-after-load 'which-key
-  (diminish 'which-key-mode))
-
-
-;; Shift lines up and down with M-up and M-down. When paredit is enabled,
-;; it will use those keybindings. For this reason, you might prefer to
-;; use M-S-up and M-S-down, which will work even in lisp modes.
-
-;; (require-package 'move-dup)
-;; (global-set-key [M-up] 'move-dup-move-lines-up)
-;; (global-set-key [M-down] 'move-dup-move-lines-down)
-;; (global-set-key [M-S-up] 'move-dup-move-lines-up)
-;; (global-set-key [M-S-down] 'move-dup-move-lines-down)
-;; 
-;; (global-set-key (kbd "C-c d") 'move-dup-duplicate-down)
-;; (global-set-key (kbd "C-c u") 'move-dup-duplicate-up)
-
 
 ;;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
 
-(defun sanityinc/backward-up-sexp (arg)
-  "Jump up to the start of the ARG'th enclosing sexp."
-  (interactive "p")
-  (let ((ppss (syntax-ppss)))
-    (cond ((elt ppss 3)
-           (goto-char (elt ppss 8))
-           (sanityinc/backward-up-sexp (1- arg)))
-          ((backward-up-list arg)))))
+;(defun sanityinc/backward-up-sexp (arg)
+;  "Jump up to the start of the ARG'th enclosing sexp."
+;  (interactive "p")
+;  (let ((ppss (syntax-ppss)))
+;    (cond ((elt ppss 3)
+;           (goto-char (elt ppss 8))
+;           (sanityinc/backward-up-sexp (1- arg)))
+;          ((backward-up-list arg)))))
 
-(global-set-key [remap backward-up-list] 'sanityinc/backward-up-sexp) ; C-M-u, C-M-up
+;(global-set-key [remap backward-up-list] 'sanityinc/backward-up-sexp) ; C-M-u, C-M-up
 
 
 
@@ -211,7 +217,7 @@
 ;;     (goto-char loc)
 ;;     (end-of-line)
 ;;     (indent-according-to-mode)))
-;; 
+;;
 ;; (global-set-key (kbd "C-o") 'sanityinc/open-line-with-reindent)
 
 
@@ -228,7 +234,7 @@
 ;;           ((inhibit-field-text-motion t))
 ;;         (sort-subr nil 'forward-line 'end-of-line nil nil
 ;;                    (lambda (s1 s2) (eq (random 2) 0)))))))
-;; 
+;;
 
 
 ; (require-package 'highlight-escape-sequences)
@@ -243,7 +249,7 @@
 ;;         font-lock-mode
 ;;         (tab-always-indent (or (eq 'complete tab-always-indent) tab-always-indent)))
 ;;     (apply orig args)))
-;; 
+;;
 ;; (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
 

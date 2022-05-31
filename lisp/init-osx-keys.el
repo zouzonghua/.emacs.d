@@ -5,8 +5,8 @@
 (when *is-a-mac*
   ;; (setq mac-command-modifier 'meta)
   ;; (setq mac-option-modifier 'none)
-  (setq mac-command-modifier 'control)  ; use command as control
-  (setq mac-control-modifier 'none)   ; use control as super
+  ;; (setq mac-command-modifier 'control)  ; use command as control
+  ;; (setq mac-control-modifier 'none)   ; use control as super
   ;; Make mouse wheel / trackpad scrolling less jerky
   (setq mouse-wheel-scroll-amount '(1
                                     ((shift) . 5)
@@ -15,8 +15,10 @@
     (dolist (direction '("right" "left"))
       (global-set-key (read-kbd-macro (concat "<" multiple "wheel-" direction ">")) 'ignore)))
   (global-set-key (kbd "M-`") 'ns-next-frame)
-  (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
+  ;(global-set-key (kbd "M-h") 'ns-do-hide-emacs)
   (global-set-key (kbd "M-˙") 'ns-do-hide-others)
+  (global-set-key (kbd "C-h") 'delete-backward-char)
+  (global-set-key (kbd "M-h") 'help-command)
   (with-eval-after-load 'nxml-mode
     (define-key nxml-mode-map (kbd "M-h") nil))
   (global-set-key (kbd "M-ˍ") 'ns-do-hide-others) ;; what describe-key reports for cmd-option-h
