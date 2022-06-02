@@ -1,4 +1,4 @@
-;;; init-minibuffer.el --- Config for minibuffer completion       -*- lexical-binding: t; -*-
+;;; init-buffer.el --- Config for minibuffer completion       -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -23,5 +23,5 @@
 (use-package consult)
 (global-set-key (kbd "C-s") 'consult-line)
 
-(provide 'init-minibuffer)
-;;; init-minibuffer.el ends here
+(provide 'init-buffer)
+;;; init-buffer.el ends here

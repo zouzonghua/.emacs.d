@@ -1,4 +1,4 @@
-;;; init-editing-utils.el --- Day-to-day editing helpers -*- lexical-binding: t -*-
+;;; init-edit.el --- Day-to-day editing helpers -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -37,6 +37,18 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 
+;;; Whitespace
+(setq-default show-trailing-whitespace nil)
+
+(defun show-trailing-whitespace ()
+  "Enable display of trailing whitespace in this buffer."
+  (setq-local show-trailing-whitespace t))
+
+(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+  (add-hook hook 'show-trailing-whitespace))
+
+
+
 ;;; Display line numbers
 (when (fboundp 'display-line-numbers-mode)
   (setq-default display-line-numbers-width 3)
@@ -69,7 +81,6 @@
 (defun newline-at-previous-of-line ()
   "Move to end of line, enter a newline, and reindent."
   (interactive)
-  (previous-line 1)
   (newline-and-indent))
 
 (global-set-key (kbd "C-<return>") 'newline-at-end-of-line)
@@ -92,9 +103,11 @@
 ;;; Move dup
 (use-package move-dup
   :bind (("M-p"   . move-dup-move-lines-up)
-         ("C-M-p" . move-dup-duplicate-up)
+  ;       ("C-M-p" . move-dup-duplicate-up)
          ("M-n"   . move-dup-move-lines-down)
-         ("C-M-n" . move-dup-duplicate-down)))
+  ;       ("C-M-n" . move-dup-duplicate-down)
+         )
+  )
 
 
 ;;; TTY copy&paste
@@ -149,5 +162,5 @@
 
 
 
-(provide 'init-editing-utils)
-;;; init-editing-utils.el ends here
+(provide 'init-edit)
+;;; init-edit.el ends here
