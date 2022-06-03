@@ -103,17 +103,15 @@
 ;;; Move dup
 (use-package move-dup
   :bind (("M-p"   . move-dup-move-lines-up)
-  ;       ("C-M-p" . move-dup-duplicate-up)
+         ("C-M-p" . move-dup-duplicate-up)
          ("M-n"   . move-dup-move-lines-down)
-  ;       ("C-M-n" . move-dup-duplicate-down)
-         )
-  )
+         ("C-M-n" . move-dup-duplicate-down)
+         ))
 
 
 ;;; TTY copy&paste
 (use-package clipetty
-  :ensure t
-  :bind ("M-w" . clipetty-kill-ring-save))
+  :hook (after-init . global-clipetty-mode))
 
 
 ;;; Mode line bell

@@ -4,10 +4,8 @@
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'help-command)
-;(global-set-key (kbd "M-[") 'backward-paragraph)
-;(global-set-key (kbd "M-]") 'forward-paragraph)
-;(global-set-key (kbd "C-M-p") 'backward-paragraph)
-;(global-set-key (kbd "C-M-n") 'forward-paragraph)
+;(global-set-key [(meta shift h)] 'backward-kill-word)
+
 
 (when *is-a-mac*
   ;; 'meta 'control 'super 'none
