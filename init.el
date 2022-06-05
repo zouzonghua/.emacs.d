@@ -45,6 +45,7 @@
 (require 'init-eglot)
 
 (require 'init-javascript)
+(require 'init-markdown)
 
 (provide 'init)
 
