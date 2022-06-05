@@ -76,9 +76,12 @@
   (interactive)
   (move-end-of-line 1)
   (newline-and-indent))
+
 (defun newline-at-previous-of-line ()
-  "Move to end of line, enter a newline, and reindent."
+  "Move to previous of line, enter a newline, and reindent."
   (interactive)
+  (move-beginning-of-line 1)
+  (previous-line 1)
   (newline-and-indent))
 
 (when *is-a-gui*
