@@ -47,7 +47,6 @@
 (dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
   (add-hook hook 'show-trailing-whitespace))
 
-
 
 ;;; Display line numbers
 (when (fboundp 'display-line-numbers-mode)
@@ -72,7 +71,6 @@
 
 ;;; Newline behaviour
 ;;; TTY not support
-(global-set-key (kbd "RET") 'newline-and-indent)
 (defun newline-at-end-of-line ()
   "Move to end of line, enter a newline, and reindent."
   (interactive)
@@ -83,8 +81,40 @@
   (interactive)
   (newline-and-indent))
 
+(when *is-a-gui*
+(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-<return>") 'newline-at-end-of-line)
-(global-set-key (kbd "C-S-<return>") 'newline-at-previous-of-line)
+(global-set-key (kbd "C-S-<return>") 'newline-at-previous-of-line))
+
+
+;;; Copy & paste
+;;; @see https://stackoverflow.com/questions/64360/how-to-copy-text-from-emacs-to-another-application-on-linux/19625063#19625063
+;;; @sww http://blog.lujun9972.win/emacs-document/blog/2018/05/31/zsh,-tmux,-emacs-%E4%BB%A5%E5%8F%8A-ssh-%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8E%E7%B2%98%E5%B8%96%E5%A4%8D%E5%88%B6%E7%9A%84%E6%95%85%E4%BA%8B/index.html
+;;; GUI not support
+(defun copy-from-terminal (text)
+ "Store text in the clipboard from a terminal Emacs."
+ (if window-system
+     (error "Trying to copy text in GUI emacs.")
+   (with-temp-buffer
+     (insert text)
+     (call-process-region (point-min) (point-max) "pbcopy"))))
+
+(defun buffer-substring-terminal-filter (beg end &optional delete)
+ "A filter that uses the default filter but also adds text to clipboard."
+ (let ((result (buffer-substring--filter beg end delete)))
+   ;; Only copy sizable entries to avoid unnecessary system calls.
+   (when (> (length result) 4)
+     (copy-from-terminal result))
+   result))
+
+(when *is-a-tty*
+ (setq-default filter-buffer-substring-function #'buffer-substring-terminal-filter))
+
+
+;;; TTY copy&paste
+; (use-package clipetty
+;   :hook (after-init . global-clipetty-mode))
+; (setq clipetty-tmux-ssh-tty "tmux show-environment SSH_TTY_XXXXX")
 
 
 ;; Huge files
@@ -98,20 +128,6 @@
     (unless (file-exists-p file)
       (error "File does not exist: %s" file))
     (vlf file)))
-
-
-;;; Move dup
-(use-package move-dup
-  :bind (("M-p"   . move-dup-move-lines-up)
-         ("C-M-p" . move-dup-duplicate-up)
-         ("M-n"   . move-dup-move-lines-down)
-         ("C-M-n" . move-dup-duplicate-down)
-         ))
-
-
-;;; TTY copy&paste
-(use-package clipetty
-  :hook (after-init . global-clipetty-mode))
 
 
 ;;; Mode line bell
@@ -133,30 +149,6 @@
 (use-package rainbow-delimiters
   :init
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-
-
-;;; Page break lines
-(use-package page-break-lines
-  :diminish page-break-lines-mode
-  :init
-  (add-hook 'after-init-hook 'global-page-break-lines-mode))
-
-
-;;; Which key
-(use-package which-key
-  :diminish which-key-mode
-  :config
-  (setq-default which-key-idle-delay 1.5)
-  :init
-  (add-hook 'after-init-hook 'which-key-mode))
-
-
-;;; Multiple cursors
-;; (require-package 'multiple-cursors)
-;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-+") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 
 

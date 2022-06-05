@@ -15,9 +15,12 @@
 (marginalia-mode t)
 
 
-(use-package embark)
-(global-set-key (kbd "C-;") 'embark-act)
-(setq prefix-help-command 'embark-prefix-help-command)
+(use-package embark
+  :bind
+  ("M-h b" . embark-bindings)
+  :custom
+  (prefix-help-command #'embark-prefix-help-command)
+  (embark-help-key "?"))
 
 
 (use-package consult)

@@ -1,4 +1,4 @@
-;;; init-benchmarking.el --- Measure startup and require times -*- lexical-binding: t -*-
+;;; init-time.el --- Measure startup and require times -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -74,5 +74,5 @@ LOAD-DURATION is the time taken in milliseconds to load FEATURE.")
 (add-hook 'after-init-hook 'sanityinc/show-init-time)
 
 
-(provide 'init-startuptime)
-;;; init-startuptime.el ends here
+(provide 'init-time)
+;;; init-time.el ends here

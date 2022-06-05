@@ -11,9 +11,11 @@
 
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(require 'init-startuptime) ;; Measure startup time
+(require 'init-time) ;; Measure startup time
 
 (defconst *is-a-mac* (eq system-type 'darwin))
+(defconst *is-a-gui* (window-system))
+(defconst *is-a-tty* (not window-system))
 
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;; -*- lexical-binding: t -*-
@@ -27,6 +29,7 @@
 ;; Bootstrap config
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (require 'init-elpa)      ;; Machinery for installing required packages
+;(require 'init-exec-path) ;; Set up $PATH
 
 ;; Load configs for specific features and modes
 (use-package diminish)
@@ -37,6 +40,23 @@
 (require 'init-edit)
 (require 'init-buffer)
 
+(require 'init-company)
+(require 'init-flymake)
+(require 'init-eglot)
+
+(require 'init-javascript)
+
 (provide 'init)
 
+;; Allow access from emacsclient
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:
 ;;; init.el ends here
