@@ -19,12 +19,18 @@
   :bind
   ("M-h b" . embark-bindings)
   :custom
-  (prefix-help-command #'embark-prefix-help-command)
   (embark-help-key "?"))
 
 
 (use-package consult)
-(global-set-key (kbd "C-s") 'consult-line)
+(global-set-key [remap goto-line] 'consult-goto-line)
+(global-set-key [remap isearch-forward] 'consult-line)
+(global-set-key [remap switch-to-buffer] 'consult-buffer)
+(global-set-key [remap project-find-regexp] 'consult-ripgrep)
+(global-set-key [remap project-switch-to-buffer] 'consult-project-buffer)
+(global-set-key [remap project-switch-to-buffer] 'consult-project-buffer)
+
+
 
 (provide 'init-buffer)
 ;;; init-buffer.el ends here
