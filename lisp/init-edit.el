@@ -120,6 +120,11 @@
 ; (setq clipetty-tmux-ssh-tty "tmux show-environment SSH_TTY_XXXXX")
 
 
+(use-package valign)
+(add-hook 'org-mode-hook #'valign-mode)
+(add-hook 'markdown-mode-hook #'valign-mode)
+
+
 ;; Huge files
 (when (fboundp 'so-long-enable)
   (add-hook 'after-init-hook 'so-long-enable))
@@ -140,12 +145,12 @@
 
 
 ;;; Beacon
-(use-package beacon
-  :config
-  (setq-default beacon-lighter "")
-  (setq-default beacon-size 20)
-  :init
-  (add-hook 'after-init-hook 'beacon-mode))
+;(use-package beacon
+;  :config
+;  (setq-default beacon-lighter "")
+;  (setq-default beacon-size 20)
+;  :init
+;  (add-hook 'after-init-hook 'beacon-mode))
 
 
 ;;; Rainbow delimiters
