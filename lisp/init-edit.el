@@ -51,7 +51,8 @@
 ;;; Display line numbers
 (when (fboundp 'display-line-numbers-mode)
   (setq-default display-line-numbers-width 3)
-  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (add-hook 'text-mode-hook 'display-line-numbers-mode))
 
 
 ;;; Display fill column indicator
@@ -59,6 +60,7 @@
 ;;  (setq-default indicate-buffer-boundaries 'left)
   (setq-default display-fill-column-indicator-column 80)
   (setq-default display-fill-column-indicator-character ?\u254e)
+  (add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
   (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode))
 
 
