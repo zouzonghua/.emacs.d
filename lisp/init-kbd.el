@@ -4,6 +4,7 @@
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'help-command)
+(define-key company-active-map (kbd "C-h") 'delete-backward-char)
 ;(global-set-key [(meta shift h)] 'backward-kill-word)
 
 
