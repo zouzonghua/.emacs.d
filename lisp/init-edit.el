@@ -55,7 +55,7 @@
 
 
 ;;; Display fill column indicator
-(when (boundp 'display-fill-column-indicator)
+(when (fboundp 'display-fill-column-indicator-mode)
 ;;  (setq-default indicate-buffer-boundaries 'left)
   (setq-default display-fill-column-indicator-column 80)
   (setq-default display-fill-column-indicator-character ?\u254e)
