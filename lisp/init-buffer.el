@@ -28,7 +28,6 @@
 (global-set-key [remap switch-to-buffer] 'consult-buffer)
 (global-set-key [remap project-find-regexp] 'consult-ripgrep)
 (global-set-key [remap project-switch-to-buffer] 'consult-project-buffer)
-(global-set-key [remap project-switch-to-buffer] 'consult-project-buffer)
 
 
 

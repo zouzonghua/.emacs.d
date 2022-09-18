@@ -25,6 +25,7 @@
  scroll-preserve-screen-position 'always
  scroll-error-top-bottom t
  )
+(global-hl-line-mode t)
 
 (add-hook 'after-init-hook 'delete-selection-mode)
 (add-hook 'after-init-hook 'global-auto-revert-mode)
