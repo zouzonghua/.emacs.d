@@ -36,6 +36,7 @@
 	path = lib/magit
 	url = https://github.com/magit/magit
 [submodule "sqlite3"]
+	build-step = make
 	path = lib/sqlite3
 	url = https://github.com/pekingduck/emacs-sqlite3-api
 [submodule "transient"]
