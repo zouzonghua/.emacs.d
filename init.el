@@ -27,25 +27,31 @@
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
 ;; Bootstrap config
+(eval-and-compile ; `borg'
+  (add-to-list 'load-path (expand-file-name "lib/borg" user-emacs-directory))
+  (require 'borg)
+  (borg-initialize))
+
+
 (setq custom-file (locate-user-emacs-file "custom.el"))
-(require 'init-elpa)      ;; Machinery for installing required packages
+;(require 'init-elpa)      ;; Machinery for installing required packages
 ;(require 'init-exec-path) ;; Set up $PATH
 
 ;; Load configs for specific features and modes
-(use-package diminish)
-(use-package command-log-mode)
+;(use-package diminish)
+;(use-package command-log-mode)
 
 (require 'init-kbd)
 (require 'init-ui)
-(require 'init-edit)
-(require 'init-buffer)
-
-(require 'init-company)
-(require 'init-flymake)
-(require 'init-eglot)
-
-(require 'init-javascript)
-(require 'init-markdown)
+;(require 'init-edit)
+;(require 'init-buffer)
+;
+;(require 'init-company)
+;(require 'init-flymake)
+;(require 'init-eglot)
+;
+;(require 'init-javascript)
+;(require 'init-markdown)
 
 (provide 'init)
 
