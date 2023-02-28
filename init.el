@@ -32,6 +32,29 @@
   (require 'borg)
   (borg-initialize))
 
+(eval-and-compile ; `use-package'
+  (require  'use-package)
+  (setq use-package-verbose t))
+
+(use-package dash)
+(use-package eieio)
+
+(use-package auto-compile
+  :config
+  (setq auto-compile-display-buffer               nil)
+  (setq auto-compile-mode-line-counter            t)
+  (setq auto-compile-source-recreate-deletes-dest t)
+  (setq auto-compile-toggle-deletes-nonlib-dest   t)
+  (setq auto-compile-update-autoloads             t))
+
+(use-package epkg
+  :defer t
+  :init
+  (setq epkg-repository
+        (expand-file-name "var/epkgs/" user-emacs-directory))
+  (setq epkg-database-connector
+        (if (>= emacs-major-version 29) 'sqlite-builtin 'sqlite-module)))
+
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
 ;(require 'init-elpa)      ;; Machinery for installing required packages
