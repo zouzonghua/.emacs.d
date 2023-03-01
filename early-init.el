@@ -30,4 +30,8 @@
 ;; So we can detect this having been loaded
 (provide 'early-init)
 
+;; Local Variables:
+;; no-byte-compile: t
+;; indent-tabs-mode: nil
+;; End:
 ;;; early-init.el ends here
