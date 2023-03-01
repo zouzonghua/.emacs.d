@@ -38,6 +38,7 @@
 
 (use-package dash)
 (use-package eieio)
+(use-package diminish)
 
 (use-package auto-compile
   :config

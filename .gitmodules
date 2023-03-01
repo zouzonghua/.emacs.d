@@ -18,6 +18,9 @@
 [submodule "diff-hl"]
 	path = lib/diff-hl
 	url = https://github.com/dgutov/diff-hl
+[submodule "diminish"]
+	path = lib/diminish
+	url = https://github.com/myrjola/diminish.el
 [submodule "emacsql"]
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git

@@ -1,4 +1,4 @@
-;;; init-eglot.el --- Configure keys specific to MacOS -*- lexical-binding: t -*-
+;;; init-eglot.el --- Configure Eglot -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
