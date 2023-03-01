@@ -123,45 +123,6 @@
 ; (setq clipetty-tmux-ssh-tty "tmux show-environment SSH_TTY_XXXXX")
 
 
-(use-package valign)
-(add-hook 'org-mode-hook #'valign-mode)
-(add-hook 'markdown-mode-hook #'valign-mode)
-
-
-;; Huge files
-(when (fboundp 'so-long-enable)
-  (add-hook 'after-init-hook 'so-long-enable))
-(use-package vlf)
-(defun ffap-vlf ()
-  "Find file at point with VLF."
-  (interactive)
-  (let ((file (ffap-file-at-point)))
-    (unless (file-exists-p file)
-      (error "File does not exist: %s" file))
-    (vlf file)))
-
-
-;;; Mode line bell
-(use-package mode-line-bell
-  :init
-  (add-hook 'after-init-hook 'mode-line-bell-mode))
-
-
-;;; Beacon
-;(use-package beacon
-;  :config
-;  (setq-default beacon-lighter "")
-;  (setq-default beacon-size 20)
-;  :init
-;  (add-hook 'after-init-hook 'beacon-mode))
-
-
-;;; Rainbow delimiters
-(use-package rainbow-delimiters
-  :init
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-
-
 
 (provide 'init-edit)
 ;;; init-edit.el ends here

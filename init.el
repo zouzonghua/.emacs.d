@@ -66,7 +66,7 @@
 
 (require 'init-kbd)
 (require 'init-ui)
-;(require 'init-edit)
+(require 'init-edit)
 ;(require 'init-buffer)
 ;
 ;(require 'init-company)
