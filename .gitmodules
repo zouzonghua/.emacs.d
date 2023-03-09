@@ -10,6 +10,9 @@
 [submodule "compat"]
 	path = lib/compat
 	url = https://git.sr.ht/~pkal/compat
+[submodule "consult"]
+	path = lib/consult
+	url = https://github.com/minad/consult
 [submodule "dash"]
 	no-byte-compile = dash-functional.el
 	no-makeinfo = dash-template.texi
@@ -25,6 +28,9 @@
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
 	no-byte-compile = emacsql-pg.el
+[submodule "embark"]
+	path = lib/embark
+	url = https://github.com/oantolin/embark
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
@@ -38,6 +44,12 @@
 	no-byte-compile = lisp/magit-libgit.el
 	path = lib/magit
 	url = https://github.com/magit/magit
+[submodule "marginalia"]
+	path = lib/marginalia
+	url = https://github.com/minad/marginalia
+[submodule "orderless"]
+	path = lib/orderless
+	url = https://github.com/oantolin/orderless
 [submodule "sqlite3"]
 	build-step = make
 	path = lib/sqlite3
@@ -48,6 +60,9 @@
 [submodule "use-package"]
 	path = lib/use-package
 	url = git@github.com:jwiegley/use-package.git
+[submodule "vertico"]
+	path = lib/vertico
+	url = https://github.com/minad/vertico
 [submodule "with-editor"]
 	path = lib/with-editor
 	url = https://github.com/magit/with-editor
