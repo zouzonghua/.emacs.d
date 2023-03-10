@@ -103,7 +103,7 @@
      (error "Trying to copy text in GUI emacs.")
    (with-temp-buffer
      (insert text)
-     (call-process-region (point-min) (point-max) "pbcopy"))))
+     (call-process-region (point-min) (point-max) "xsel" nil nil nil "-bi" ))))
 
 (defun buffer-substring-terminal-filter (beg end &optional delete)
  "A filter that uses the default filter but also adds text to clipboard."
@@ -121,6 +121,16 @@
 ; (use-package clipetty
 ;   :hook (after-init . global-clipetty-mode))
 ; (setq clipetty-tmux-ssh-tty "tmux show-environment SSH_TTY_XXXXX")
+
+;;; A simple visible bell which works in all terminal types
+
+(defun flash-mode-line ()
+  (invert-face 'mode-line)
+  (run-with-timer 0.05 nil 'invert-face 'mode-line))
+
+(setq-default
+ ring-bell-function 'flash-mode-line)
+
 
 
 
