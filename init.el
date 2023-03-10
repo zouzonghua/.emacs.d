@@ -74,6 +74,7 @@
 (require 'init-ui)
 (require 'init-edit)
 (require 'init-minibuffer)
+(require 'init-beancount)
 
 ;;; Tequila worms
 
