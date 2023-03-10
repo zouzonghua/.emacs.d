@@ -73,7 +73,7 @@
 (require 'init-kbd)
 (require 'init-ui)
 (require 'init-edit)
-
+(require 'init-minibuffer)
 
 ;;; Tequila worms
 
