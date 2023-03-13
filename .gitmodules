@@ -50,6 +50,9 @@
 [submodule "marginalia"]
 	path = lib/marginalia
 	url = https://github.com/minad/marginalia
+[submodule "markdown-mode"]
+	path = lib/markdown-mode
+	url = https://github.com/jrblevin/markdown-mode
 [submodule "orderless"]
 	path = lib/orderless
 	url = https://github.com/oantolin/orderless

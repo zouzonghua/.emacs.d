@@ -75,6 +75,7 @@
 (require 'init-edit)
 (require 'init-minibuffer)
 (require 'init-beancount)
+(require 'init-markdown)
 
 ;;; Tequila worms
 
