@@ -25,7 +25,14 @@
  scroll-preserve-screen-position 'always
  scroll-error-top-bottom t
  )
-(global-hl-line-mode t)
+;(global-hl-line-mode t)
+
+;; Enable mouse mode in terminal
+(unless (display-graphic-p)
+  (xterm-mouse-mode 1))
+
+(tab-bar-mode 1)
+(setq tab-bar-tab-hints t)
 
 (add-hook 'after-init-hook 'delete-selection-mode)
 (add-hook 'after-init-hook 'global-auto-revert-mode)
